@@ -71,4 +71,18 @@ class MonthTest extends TestCase
             new DateTime("01/01/2022")
         );
     }
+
+    /** @test */
+    public function test_create_with_more_days()
+    {
+        //Arrange
+        $dailyGeneration = $this->createDailyGeneration(40);
+        $this->expectExceptionMessage("The size of the Daily Generation Array isn't the total of days in the month");
+
+        //Act
+        new Month(
+            $dailyGeneration,
+            new DateTime("01/01/2022")
+        );
+    }
 }
