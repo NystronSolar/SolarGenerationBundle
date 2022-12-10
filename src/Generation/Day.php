@@ -10,19 +10,33 @@ use DateTime;
 class Day
 {
     /**
+     * The Generation (kWh) in the Day
+     * @var float
+     */
+    private float $generation;
+
+    /**
      * The Day of the Generation
      * @var DateTime
      */
     private DateTime $date;
 
     /**
-     * The Generation (kWh) in the Day
-     * @var float
+     * @param float $generation
+     * @param DateTime $date
      */
-    private float $generation;
-
-    public function __construct()
+    public function __construct(
+        float $generation = null,
+        DateTime $date = null
+    )
     {
+        if (!is_null($generation)) {
+            $this->setGeneration($generation);
+        }
+
+        if (!is_null($date)) {
+            $this->setDate($date);
+        }
     }
 
     /**
