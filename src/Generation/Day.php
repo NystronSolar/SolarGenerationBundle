@@ -45,6 +45,7 @@ class Day
 
     /**
      * Set the Day of the Generation
+     * @param DateTime $_date
      * @return Day
      */
     public function setDate(DateTime $_date): Day
@@ -56,6 +57,7 @@ class Day
 
     /**
      * Set the Generation (kWh) in the Day
+     * @param float $_generation
      * @return Day
      */
     public function setGeneration(float $_generation): Day
