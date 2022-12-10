@@ -68,7 +68,7 @@ class Month implements IteratorAggregate
 
     /**
      * Get the Total Generation (kWh) in the Month
-     * @return DateTime
+     * @return float
      */
     public function getTotalGeneration(): float
     {
