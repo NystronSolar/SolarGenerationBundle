@@ -65,6 +65,37 @@ class Month
      */
     function setDailyGeneration($_dailyGeneration): Month
     {
+        $daysInMonth = date_format($this->date, 't');
+        $elementsSize = sizeof($_dailyGeneration);
+
+        if ($elementsSize !== $daysInMonth) {
+            $month = date_format($this->date, 'F');
+
+            throw new Exception("The size of the Daily Generation Array is $elementsSize. Expecting $daysInMonth (The total of days in the month of $month)");
+        }
+
+        $expectedMonth = date_format($this->date, 'm');
+        $expectedYear = date_format($this->date, 'Y');
+
+        foreach ($_dailyGeneration as $value) {
+            if (!is_a($value, Day::class)) {
+                $dayClass = Day::class;
+                throw new Exception("All the elemens in the Daily Generation should be $dayClass objects.");
+            }
+
+            $actualMonth = $value->getDay()->format('m');
+            if ($actualMonth !== $expectedMonth) {
+                $monthClass = Month::class;
+                throw new Exception("All the elements in the Daily Generation should have the same month as the $monthClass Object.");
+            }
+
+            $actualYear = $value->getDay()->format('Y');
+            if ($actualYear !== $expectedYear) {
+                $monthClass = Month::class;
+                throw new Exception("All the elements in the Daily Generation should have the same year as the $monthClass Object.");
+            }
+        }
+
         $this->dailyGeneration = $_dailyGeneration;
 
         return $this;
