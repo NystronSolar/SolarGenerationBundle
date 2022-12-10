@@ -1,0 +1,22 @@
+{
+    "name": "nystron-solar/solar-generation-bundle",
+    "description": "A Bundle of Classes to represent Solar Generation",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "NystronSolar\\SolarGenerationBundle\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "TheDevick"
+        }
+    ],
+    "require": {
+        "ext-bcmath": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    }
+}
