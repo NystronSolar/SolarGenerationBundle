@@ -119,4 +119,21 @@ class MonthTest extends TestCase
             new DateTime("01/01/2022")
         );
     }
+
+    /** @test */
+    public function test_create_with_different_year()
+    {
+        //Arrange
+        $monthClass = Month::class;
+        $this->expectExceptionMessage("All the elements in the Daily Generation should have the same year as the $monthClass Object.");
+
+        $dailyGeneration = $this->createDailyGeneration(30);
+        $dailyGeneration[] = new Day(20.5, new DateTime("01/01/2023"));
+
+        //Act
+        new Month(
+            $dailyGeneration,
+            new DateTime("01/01/2022")
+        );
+    }
 }
