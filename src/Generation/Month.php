@@ -63,9 +63,11 @@ class Month implements IteratorAggregate
 
     /**
      * Set the Array of the Month Daily Generation
+     * @param Day[] $_dailyGeneration
+     * @throws Exception 
      * @return Month
      */
-    function setDailyGeneration($_dailyGeneration): Month
+    function setDailyGeneration(array $_dailyGeneration): Month
     {
         $daysInMonth = date_format($this->date, 't');
         $elementsSize = sizeof($_dailyGeneration);
@@ -105,6 +107,7 @@ class Month implements IteratorAggregate
 
     /**
      * Set the Month of the Generation
+     * @param DateTime $_date
      * @return Month
      */
     public function setDate(DateTime $_date): Month
@@ -114,6 +117,10 @@ class Month implements IteratorAggregate
         return $this;
     }
 
+    /**
+     * Get the Iterator
+     * @return ArrayIterator
+     */
     public function getIterator(): ArrayIterator
     {
         return new ArrayIterator($this->dailyGeneration);
