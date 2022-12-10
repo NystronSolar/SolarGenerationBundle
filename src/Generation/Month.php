@@ -2,13 +2,15 @@
 
 namespace NystronSolar\SolarGenerationBundle\Generation;
 
+use ArrayIterator;
 use DateTime;
 use Exception;
+use IteratorAggregate;
 
 /**
  * A Class to represent a Month of Solar Generation
  */
-class Month
+class Month implements IteratorAggregate
 {
     /**
      * The Array of the Month Daily Generation
@@ -110,5 +112,10 @@ class Month
         $this->date = $_date;
 
         return $this;
+    }
+
+    public function getIterator(): ArrayIterator
+    {
+        return new ArrayIterator($this->dailyGeneration);
     }
 }
