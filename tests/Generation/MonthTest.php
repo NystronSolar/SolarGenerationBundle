@@ -28,4 +28,33 @@ class MonthTest extends TestCase
 
         return $dailyGeneration;
     }
+
+    /** @test */
+    public function test_total_generation()
+    {
+        // Arrange
+        $dailyGeneration = $this->createDailyGeneration();
+        $totalGeneration = '0.0';
+
+        foreach ($dailyGeneration as $dayGeneration) {
+            $dayGenerationString = strval($dayGeneration->getGeneration());
+
+            $sum = bcadd($dayGenerationString, $totalGeneration, 1);
+            $totalGeneration = $sum;
+        }
+
+        $expectedTotalGeneration = floatval($totalGeneration);
+
+        $month = new Month(
+            $dailyGeneration,
+            new DateTime("01/01/2022")
+        );
+
+        // Act
+        $response = $month->getTotalGeneration();
+
+        // Assert
+        $this->assertIsFloat($response);
+        $this->assertEquals($expectedTotalGeneration, $response);
+    }
 }
