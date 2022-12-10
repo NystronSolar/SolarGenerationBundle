@@ -30,8 +30,22 @@ class Month implements IteratorAggregate
      */
     private float $totalGeneration;
 
-    public function __construct()
+    /**
+     * @param Day[] $dailyGeneration
+     * @param DateTime $date
+     */
+    public function __construct(
+        array $dailyGeneration = null,
+        DateTime $date = null
+    )
     {
+        if (!is_null($dailyGeneration)) {
+            $this->setDailyGeneration($dailyGeneration);
+        }
+
+        if (!is_null($date)) {
+            $this->setDate($date);
+        }
     }
 
     /**
