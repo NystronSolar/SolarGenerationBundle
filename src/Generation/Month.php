@@ -60,6 +60,17 @@ class Month
     }
 
     /**
+     * Set the Array of the Month Daily Generation
+     * @return Month
+     */
+    function setDailyGeneration($_dailyGeneration): Month
+    {
+        $this->dailyGeneration = $_dailyGeneration;
+
+        return $this;
+    }
+
+    /**
      * Set the Month of the Generation
      * @return Month
      */
