@@ -39,12 +39,12 @@ class Month implements IteratorAggregate
         DateTime $date = null
     )
     {
-        if (!is_null($dailyGeneration)) {
-            $this->setDailyGeneration($dailyGeneration);
-        }
-
         if (!is_null($date)) {
             $this->setDate($date);
+        }
+
+        if (!is_null($dailyGeneration)) {
+            $this->setDailyGeneration($dailyGeneration);
         }
     }
 
@@ -83,13 +83,11 @@ class Month implements IteratorAggregate
      */
     function setDailyGeneration(array $_dailyGeneration): Month
     {
-        $daysInMonth = date_format($this->date, 't');
+        $daysInMonth = intval(date_format($this->date, 't'));
         $elementsSize = sizeof($_dailyGeneration);
 
         if ($elementsSize !== $daysInMonth) {
-            $month = date_format($this->date, 'F');
-
-            throw new Exception("The size of the Daily Generation Array is $elementsSize. Expecting $daysInMonth (The total of days in the month of $month)");
+            throw new Exception("The size of the Daily Generation Array isn't the total of days in the month");
         }
 
         $expectedMonth = date_format($this->date, 'm');
@@ -115,8 +113,27 @@ class Month implements IteratorAggregate
         }
 
         $this->dailyGeneration = $_dailyGeneration;
+        $this->totalGeneration = $this->setTotalGeneration();
 
         return $this;
+    }
+
+    /**
+     * Set the Total Generation (kWh) in the Month
+     * @return float
+     */
+    private function setTotalGeneration(): float
+    {
+        $total = '0.0';
+
+        foreach ($this->dailyGeneration as $dayGeneration) {
+            $dayGenerationString = strval($dayGeneration->getGeneration());
+
+            $sum = bcadd($dayGenerationString, $total, 1);
+            $total = $sum;
+        }
+
+        return floatval($total);
     }
 
     /**
