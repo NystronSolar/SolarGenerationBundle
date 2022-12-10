@@ -30,7 +30,7 @@ class MonthTest extends TestCase
     }
 
     /** @test */
-    public function test_total_generation()
+    public function test_calc_total_generation()
     {
         // Arrange
         $dailyGeneration = $this->createDailyGeneration();
@@ -56,5 +56,19 @@ class MonthTest extends TestCase
         // Assert
         $this->assertIsFloat($response);
         $this->assertEquals($expectedTotalGeneration, $response);
+    }
+
+    /** @test */
+    public function test_create_with_less_days()
+    {
+        //Arrange
+        $dailyGeneration = $this->createDailyGeneration(20);
+        $this->expectExceptionMessage("The size of the Daily Generation Array isn't the total of days in the month");
+
+        //Act
+        new Month(
+            $dailyGeneration,
+            new DateTime("01/01/2022")
+        );
     }
 }
