@@ -85,13 +85,13 @@ class Month implements IteratorAggregate
                 throw new Exception("All the elemens in the Daily Generation should be $dayClass objects.");
             }
 
-            $actualMonth = $value->getDay()->format('m');
+            $actualMonth = $value->getDate()->format('m');
             if ($actualMonth !== $expectedMonth) {
                 $monthClass = Month::class;
                 throw new Exception("All the elements in the Daily Generation should have the same month as the $monthClass Object.");
             }
 
-            $actualYear = $value->getDay()->format('Y');
+            $actualYear = $value->getDate()->format('Y');
             if ($actualYear !== $expectedYear) {
                 $monthClass = Month::class;
                 throw new Exception("All the elements in the Daily Generation should have the same year as the $monthClass Object.");
