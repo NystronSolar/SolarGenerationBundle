@@ -3,6 +3,7 @@
     "description": "A Bundle of Classes to represent Solar Generation",
     "type": "library",
     "license": "MIT",
+    "homepage": "https://github.com/NystronSolar/SolarGenerationBundle",
     "autoload": {
         "psr-4": {
             "NystronSolar\\SolarGenerationBundle\\": "src/"
