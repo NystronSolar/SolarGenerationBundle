@@ -85,4 +85,21 @@ class MonthTest extends TestCase
             new DateTime("01/01/2022")
         );
     }
+
+    /** @test */
+    public function test_create_with_invalid_days()
+    {
+        //Arrange
+        $dayClass = Day::class;
+        $this->expectExceptionMessage("All the elemens in the Daily Generation should be $dayClass objects.");
+
+        $dailyGeneration = $this->createDailyGeneration(30);
+        $dailyGeneration[] = 20;
+
+        //Act
+        new Month(
+            $dailyGeneration,
+            new DateTime("01/01/2022")
+        );
+    }
 }
