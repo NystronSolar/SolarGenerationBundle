@@ -1,4 +1,6 @@
 # Solar Generation Bundle
+[![NystronSolarBadge](https://img.shields.io/badge/%E2%9A%A1%20Powered%20By-Nystron%20Solar-yellow?style=for-the-badge)](https://github.com/NystronSolar)
+
 A Bundle of Classes to represent Solar Generation
 
 ## Day Class
